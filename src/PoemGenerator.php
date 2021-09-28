@@ -14,7 +14,7 @@ class PoemGenerator
         return implode(PHP_EOL . str_pad(' ', 8), $parts);
     }
 
-    private function data(): array
+    protected function data(): array
     {
         return [
             'the horse and the hound and the horn that belonged to', 'the farmer sowing his corn that kept',
