@@ -4,9 +4,13 @@ namespace App;
 class PoemGenerator
 {
     public function __construct(
-        public Formatter $formatter,
-        public Orderer $orderer,
-    ) {}
+        public ?Formatter $formatter = null,
+        public ?Orderer $orderer = null,
+    )
+    {
+        $this->formatter = new DefaultFormatter();
+        $this->orderer = new SequentialOrderer();
+    }
 
     public function generate(int $number): string
     {
