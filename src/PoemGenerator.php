@@ -3,6 +3,11 @@ namespace App;
 
 class PoemGenerator
 {
+    public function __construct(
+        public Formatter $formatter,
+        public Orderer $orderer,
+    ) {}
+
     public function generate(int $number): string
     {
         return "This is {$this->phrase($number)}.";
@@ -11,7 +16,7 @@ class PoemGenerator
     protected function phrase(int $number): string
     {
         $parts = $this->parts($number);
-        return implode(PHP_EOL . str_pad(' ', 8), $parts);
+        return $this->formatter->format($parts);
     }
 
     protected function parts(int $number): array
@@ -21,7 +26,7 @@ class PoemGenerator
 
     protected function data(): array
     {
-        return [
+        return $this->orderer->order([
             'the horse and the hound and the horn that belonged to', 'the farmer sowing his corn that kept',
             'the rooster that crowed in the morn that woke',
             'the priest all shaven and shorn that married',
@@ -33,6 +38,6 @@ class PoemGenerator
             'the rat that ate',
             'the malt that lay in',
             'the house that Jack built',
-        ];
+        ]);
     }
 }
