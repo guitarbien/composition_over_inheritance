@@ -10,8 +10,13 @@ class PoemGenerator
 
     protected function phrase(int $number): string
     {
-        $parts = array_slice($this->data(), -$number, $number);
+        $parts = $this->parts($number);
         return implode(PHP_EOL . str_pad(' ', 8), $parts);
+    }
+
+    protected function parts(int $number): array
+    {
+        return array_slice($this->data(), -$number, $number);
     }
 
     protected function data(): array
