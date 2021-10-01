@@ -8,8 +8,8 @@ class PoemGenerator
         public ?Orderer $orderer = null,
     )
     {
-        $this->formatter = new DefaultFormatter();
-        $this->orderer = new SequentialOrderer();
+        $this->formatter ??= new DefaultFormatter();
+        $this->orderer ??= new SequentialOrderer();
     }
 
     public function generate(int $number): string
